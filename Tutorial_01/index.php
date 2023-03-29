@@ -15,12 +15,12 @@
 	{
     	echo "<script type='text/javascript'>alert('$rows. rows and .$cols. colums chess board')</script>";
 
-		if ( $rows == 8 && $cols == 8 ) {
+		if (  is_int($rows) && is_int($cols)) {
 				echo "<table>";
-				for ($row=1; $row < 9; $row++) { 
+				for ( $i=0 ; $i < $rows; $i++) { 
 					echo "<tr>";
-					 for ($col=1; $col <9 ; $col++) { 
-						if (($row+$col)%2==0) {
+					 for ($k=0; $k <$cols ; $k++) { 
+						if (($i+$k)%2==0) {
 							echo "<td class='white'></td>";
 						}
 						else {
@@ -32,43 +32,12 @@
 				echo "</table>";
 				
 		}
-			elseif ( $rows == 5 && $cols == 2 ) {
-				echo "<table>";
-					for ($row=1; $row < 3; $row++) { 
-						echo "<tr>";
-						 for ($col=1; $col <6 ; $col++) { 
-							if (($row+$col)%2==0) {
-								echo "<td class='white'></td>";
-							}
-							else {
-								echo "<td class='black'></td>";
-							}
-						 }
-						echo "</tr>";
-					}
-					echo "</table>";
-			}
-		elseif ( $rows == 6 && $cols == 6 ) {
-			echo "<table>";
-				for ($row=1; $row < 7; $row++) { 
-					echo "<tr>";
-					for ($col=1; $col < 7 ; $col++) { 
-						if (($row+$col)%2==0) {
-							echo "<td class='white'></td>";
-						}
-						else {
-								echo "<td class='black'></td>";
-						}
-						}
-					echo "</tr>";
-				}
-				echo "</table>";
-		}
-		elseif ( $rows == 0 && $cols == 1 ) {
+	
+		elseif ( $rows == 0 && is_int($cols) ) {
 			echo "<br>";
 			echo  "<p class='bg'>row parameter must be greather than 0</p>";
 		}
-		elseif ( $rows == 1 && $cols == 0 ) {
+		elseif ( is_int($rows) && $cols == 0 ) {
 			echo "<br>";
 			echo "<p class='bg'>col parameter must be greather than 0</p>";
 		}
@@ -76,15 +45,12 @@
 			echo "<br>";
 			echo "<p class='bg'>rows and cols parameter must be greather than 0</p>";
 		}
-		elseif ( $rows == 'myrows' && $cols == 'mycols' ) {
-			echo "<br>";
-			echo "<p class='bg'>rows and cols parameter must be number</p>";
-		}
+		
 		elseif ( is_string($rows) && is_string($cols) ) {
 			echo "<br>";
 			echo "<p class='bg'>rows and cols parameter must be number </p>";
 		}
-		elseif ( $rows == 5 &&  is_string($cols)  ) {
+		elseif ( is_int($rows) &&  is_string($cols)  ) {
 			echo "<br>";
 			echo "<p class='bg'>cols parameter must be number </p>";
 		}
@@ -102,15 +68,7 @@
 	}
 	
 	drawChessBorad(8,8);
-	//drawChessBorad(6,6);
-	//drawChessBorad(5,2);
-	//drawChessBorad(0,1);
-	//drawChessBorad(1,0);
-	//drawChessBorad(0,0);
-	//drawChessBorad('myrows','mycols');
-	//drawChessBorad(5,'mycols');
-	//drawChessBorad(0,'mycols');
-	//drawChessBorad('myrows',0);
+	
 	
 ?>
 
