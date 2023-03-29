@@ -19,6 +19,9 @@
         if ( is_string($row) ) {
             echo "<p class='bg'>row parameter must be number</p>";
         }
+        elseif ( (int)$row % 2 == 0) {
+            echo "<p class='bg'>row parameter must be odd number</p>";
+        }
         elseif ( is_int($row) ) {
             echo "<div style='text-align:center;margin-top:50px;'>";
             for ($i=1; $i <= $row; $i++) { 
@@ -49,7 +52,11 @@
 
     }
 
-    makeDiamondShape(5);
+    makeDiamondShape(2);
+    makeDiamondShape(3);
+    makeDiamondShape(8);
+    makeDiamondShape(11);
+    makeDiamondShape("mgmg");
 ?>
     
 </body>
