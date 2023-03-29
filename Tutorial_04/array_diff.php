@@ -1,12 +1,16 @@
 <?php
     error_reporting(E_ALL ^ E_WARNING);
     function arrayDiff($arr1,$arr2) {
-    $count=count($arr1+$arr2);
-    for ($i=0; $i < $count; $i++) { 
-        if ((int)$arr1[$i]!=(int)$arr2[$i]) {
-            echo $arr1[$i];
+        if ((int)$arr1[0]!=(int)$arr2[0] && (int)$arr1[0]!=(int)$arr2[1] && (int)$arr1[0]!=(int)$arr2[2]) {
+            echo $arr1[0];
         }
-    }
+        
+        if ((int)$arr1[1]!=(int)$arr2[0] && (int)$arr1[1]!=(int)$arr2[1] && (int)$arr1[1]!=(int)$arr2[2]) {
+            echo $arr1[1];
+        }
+        if ((int)$arr1[2]!=(int)$arr2[0] && (int)$arr1[2]!=(int)$arr2[1] && (int)$arr1[2]!=(int)$arr2[2]) {
+            echo $arr1[2];
+        }
   
  
 
