@@ -1,0 +1,48 @@
+h1 {
+  text-align: center;
+  border: 1px solid rgb(107, 106, 106);
+  width: 40%;
+  margin: 0 auto;
+  padding: 20px 0;
+  font-size: 30px;
+  margin-top: 20px;
+  background-color: rgb(243, 240, 240);
+  border-bottom: none;
+}
+form {
+  text-align: center;
+  border: 1px solid  rgb(107, 106, 106);
+  width: 40%;
+  margin: 0 auto;
+  padding: 20px 0;
+ 
+}
+label {
+  font-size: 20px;
+}
+P {
+  margin:0 auto;
+  text-align: center;
+  color: rgb(1, 1, 63);
+  padding: 20px 0;
+  width:40%;
+  margin-top:100px;
+  background-color: rgb(180, 236, 252);
+}
+
+.dateof {
+  width: 35%;
+  height: 30px;
+  font-size: 20px;
+}
+.btn {
+  width: 80%;
+  height: 40px;
+  color: white;
+  border: none;
+  background-color: rgb(56, 115, 243);
+  border-radius:5px ;
+  margin-top: 20px ;
+  cursor: pointer;
+}
+
