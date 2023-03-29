@@ -68,6 +68,11 @@
 	}
 	
 	drawChessBorad(8,8);
+	drawChessBorad(5,2);
+	drawChessBorad(6,3);
+	drawChessBorad(1,0);
+	drawChessBorad(0,0);
+	drawChessBorad("myname",8);
 	
 	
 ?>
