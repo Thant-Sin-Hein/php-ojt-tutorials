@@ -13,10 +13,6 @@
     if (isset($_GET['sub'])) {
     $dob = $_GET['dob'];
     $todayDate = date("Y-m-d");
-
-  
-  
-
     if ($todayDate < $dob)
     {
         echo"<script>alert('date must not greater than or equal tomorrow')</script>";
@@ -35,7 +31,6 @@
     echo "Your age is " .$yourYear." Years, " .$birthdayMonth." month and ".$birthday." days"; 
     echo "</p>";
 }
-
 ?>
   <h1>Age Calculator</h1>
   <form action="" methoe="post">

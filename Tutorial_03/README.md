@@ -14,7 +14,7 @@
 │   ├── reset.css
 │   └── style.css
 ├── demo/
-│   └── Tuto_03.png
+│   └── preview.png
 ├── libs
 ├── index.php
 └── README.md
