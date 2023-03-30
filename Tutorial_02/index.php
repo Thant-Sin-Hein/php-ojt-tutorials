@@ -11,11 +11,8 @@
 <body>
 <h1>Diamond Pattern</h1>
 <?php
- 
-     
     function makeDiamondShape($row)
     {
-        
         if ( is_string($row) ) {
             echo "<p class='bg'>row parameter must be number</p>";
         }
@@ -46,17 +43,8 @@
             }
             echo "</div>";
         }
-        else {
-            echo "<p class='bg'>Somethig Wrong</p>";
-        }
-
     }
-
     makeDiamondShape(2);
-    makeDiamondShape(3);
-    makeDiamondShape(8);
-    makeDiamondShape(11);
-    makeDiamondShape("mgmg");
 ?>
     
 </body>
