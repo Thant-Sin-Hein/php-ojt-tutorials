@@ -13,8 +13,6 @@
 <?php 
 	function drawChessBorad($rows, $cols)
 	{
-    	echo "<script type='text/javascript'>alert('$rows. rows and .$cols. colums chess board')</script>";
-
 		if (  is_int($rows) && is_int($cols)) {
 				echo "<table>";
 				for ( $i=0 ; $i < $rows; $i++) { 
@@ -32,7 +30,6 @@
 				echo "</table>";
 				
 		}
-	
 		elseif ( $rows == 0 && is_int($cols) ) {
 			echo "<br>";
 			echo  "<p class='bg'>row parameter must be greather than 0</p>";
@@ -66,15 +63,7 @@
 			echo "<p class='bg'>This type of chess does not exit in this page. </p>";
 		}
 	}
-	
-	drawChessBorad(8,8);
-	drawChessBorad(5,2);
-	drawChessBorad(6,3);
-	drawChessBorad(1,0);
-	drawChessBorad(0,0);
-	drawChessBorad("myname",8);
-	
-	
+	drawChessBorad(8,8);	
 ?>
 
 </body>

@@ -10,7 +10,7 @@
 │   ├── reset.css
 │   └── style.css
 ├── demo/
-│   └── Tuto_01.png
+│   └── preview.png
 ├── index.php
 └── README.md
 ```
