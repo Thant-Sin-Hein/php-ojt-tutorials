@@ -1,9 +1,9 @@
 <?php
     function createPhoneNumber($numberArray)
     {
-    $firstThreeNumber=$numberArray[0].$numberArray[1].$numberArray[2];
-    $secondThreeNumber=$numberArray[3].$numberArray[4].$numberArray[5];
-    $thirdFourNumber=$numberArray[6].$numberArray[7].$numberArray[8].$numberArray[9];
-        echo "output =>"."(".$firstThreeNumber.")"." "." ".$secondThreeNumber."-".$thirdFourNumber;
+        $phone_number = "(" . substr(implode("", array_slice($numberArray, 0, 3)), 0, 3) . ") " . substr(implode("", array_slice($numberArray, 3, 3)), 0, 3) . "-" . substr(implode("", array_slice($numberArray, 6)), 0, 4);
+        echo "output->".$phone_number; 
     }
-    createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]); 
+    createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+?>
+
