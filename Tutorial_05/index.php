@@ -13,7 +13,7 @@
     echo "<div class='div1'>";
     echo "<h1>Test File</h1>";
     echo "<p>";
-    $textFile=fopen("files/sample.txt","r") or die("Unable to open file");
+    $textFile=fopen("files/sample.txt","r") or die ("Unable to open file");
     echo fread($textFile,filesize("files/sample.txt"));
     echo "</p>";
     echo "<h1>Document File</h1>";
