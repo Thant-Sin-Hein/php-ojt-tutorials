@@ -1,0 +1,22 @@
+div.div1 {
+  width: 65%;
+  border: 1px solid rgb(0, 0, 0,0.2);
+  margin: 0 auto;
+  margin-top: 40px;
+}
+h1 {
+  font-size: 20px;
+  padding: 10px 0;
+  width: 96%;
+  margin: 0 auto;
+  border-bottom: 1px solid rgb(0, 0, 0,0.2);
+}
+p {
+  width: 96%;
+  margin: 0 auto;
+  padding: 10px 0;
+  padding-bottom: 30px;
+}
+td {
+  padding: 10px 20px;
+}
