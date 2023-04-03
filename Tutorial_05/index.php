@@ -1,3 +1,20 @@
+<?php
+require "libs/vendor/autoload.php";
+$phpWord = new \PhpOffice\PhpWord\PhpWord();
+$section = $phpWord->addSection();
+$objReader = \PhpOffice\PhpWord\IOFactory::createReader('Msdoc');
+$phpRead = $objReader->load("files/sample.doc");
+$section->getText($phpRead);
+
+require_once "libs/vendor/phpoffice/phpexcel/classes/PHPExcel.php";
+$path="files/sample.xlsx";
+$excelReader=PHPExcel_IOFactory::createReaderForFile($path);
+$excel_Obj=$excelReader->load($path);
+$worksheet=$excel_Obj->getSheet('0');
+$lastRow=$worksheet->getHighestRow();
+$colString=$worksheet->getHighestDataColumn();
+$colString_number=PHPExcel_cell::columnIndexFromString($colString);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,13 +35,7 @@
     echo "</p>";
     echo "<h1>Document File</h1>";
     echo "<p>";
-    require "libs/vendor/autoload.php";
-    $phpWord = new \PhpOffice\PhpWord\PhpWord();
-    $section = $phpWord->addSection();
-    $objReader = \PhpOffice\PhpWord\IOFactory::createReader('Msdoc');
-    $phpRead = $objReader->load("files/sample.doc");
-    $section->getText($phpRead);
-    $htmlWriter = new \PhpOffice\PhpWord\Writer\HTML($phpRead);
+    
     if (!file_exists('libs/sample.html')) {
         $htmlWriter->save('libs/sample.html');
         $html = file_get_contents('libs/sample.html');
@@ -36,14 +47,7 @@
     echo "</p>";
     echo "<h1>Excel File</h1>";
     echo "<p>";
-    require_once "libs/vendor/phpoffice/phpexcel/classes/PHPExcel.php";
-    $path="files/sample.xlsx";
-    $excelReader=PHPExcel_IOFactory::createReaderForFile($path);
-    $excel_Obj=$excelReader->load($path);
-    $worksheet=$excel_Obj->getSheet('0');
-    $lastRow=$worksheet->getHighestRow();
-    $colString=$worksheet->getHighestDataColumn();
-    $colString_number=PHPExcel_cell::columnIndexFromString($colString);
+    
     echo "<table style='width:97%;margin:0 auto;'>";
         for ($row=1; $row <= $lastRow; $row++) { 
             echo "<tr'>";
