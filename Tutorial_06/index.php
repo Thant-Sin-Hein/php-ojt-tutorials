@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ALL ^ E_WARNING);
 if (isset($_POST['store'])) {
   	$folderName =$_POST['file'];
   	$path = "images/$folderName";
@@ -7,7 +7,6 @@ if (isset($_POST['store'])) {
     $newFolder=mkdir("images"."/$folderName",0777,true);
     $imgName=$_FILES['fileimg']['name'];
     $tmp=$_FILES['fileimg']['tmp_name'];
-
     $target_file= "images/$folderName/".$imgName;
     $image_file="images/$folderName/$imgName";
     if (file_exists("images/$folderName/$imgName")) {
@@ -21,25 +20,24 @@ if (isset($_POST['store'])) {
             echo "error";
         }
     }
-  }
-  else {
-    $imgName=$_FILES['fileimg']['name'];
-    $tmp=$_FILES['fileimg']['tmp_name'];
-
-    $target_file= "images/$folderName/".$imgName;
-    if (file_exists("images/$folderName/$imgName")) {
-        echo "<script>alert('Your image is already exit.')</script>";
     }
     else {
-        if (move_uploaded_file($tmp,$target_file)) {
-            move_uploaded_file($tmp,$target_file);
-            echo "<p class='bg-info w-25 ms-auto me-auto mt-4 mb-0 p-3 text-primary'>Upload Image Successfully!</p>";
-        }else{
-            echo "error";
+        $imgName=$_FILES['fileimg']['name'];
+        $tmp=$_FILES['fileimg']['tmp_name'];
+
+        $target_file= "images/$folderName/".$imgName;
+        if (file_exists("images/$folderName/$imgName")) {
+            echo "<script>alert('Your image is already exit.')</script>";
+        }
+        else {
+            if (move_uploaded_file($tmp,$target_file)) {
+                move_uploaded_file($tmp,$target_file);
+                echo "<p class='bg-info w-25 ms-auto me-auto mt-4 mb-0 p-3 text-primary'>Upload Image Successfully!</p>";
+            }else{
+                echo "error";
+             }
         }
     }
-   
-  }
 }
 ?>
 <!DOCTYPE html>
@@ -68,11 +66,6 @@ if (isset($_POST['store'])) {
     <input type="submit" value="Upload" name="store" class="bg-info text-light w-100 mt-3 border-0">
   </form>
   </div>
-  
-  
-<?php 
-include('upload.php');
-?>
 
 
 <script src="lib/js/bootstrap.bundle.min.js"></script>
@@ -82,4 +75,6 @@ include('upload.php');
 </script>
 </body>
 </html>
-
+<?php
+include('upload.php');
+?>
