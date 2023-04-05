@@ -1,44 +1,5 @@
 <?php
-error_reporting(E_ALL ^ E_WARNING);
-if (isset($_POST['store'])) {
-  	$folderName =$_POST['file'];
-  	$path = "images/$folderName";
-  	if (!file_exists($path)) {
-    $newFolder=mkdir("images"."/$folderName",0777,true);
-    $imgName=$_FILES['fileimg']['name'];
-    $tmp=$_FILES['fileimg']['tmp_name'];
-    $target_file= "images/$folderName/".$imgName;
-    $image_file="images/$folderName/$imgName";
-    if (file_exists("images/$folderName/$imgName")) {
-      echo "<script>alert('Your image is already exit.')</script>";
-    }
-    else {
-        if (move_uploaded_file($tmp,$target_file)) {
-            move_uploaded_file($tmp,$target_file);
-            echo "<p class='bg-info w-25 ms-auto me-auto mt-4 mb-0 p-3 text-primary'>Upload Image Successfully!</p>";
-        }else{
-            echo "error";
-        }
-    }
-    }
-    else {
-        $imgName=$_FILES['fileimg']['name'];
-        $tmp=$_FILES['fileimg']['tmp_name'];
-
-        $target_file= "images/$folderName/".$imgName;
-        if (file_exists("images/$folderName/$imgName")) {
-            echo "<script>alert('Your image is already exit.')</script>";
-        }
-        else {
-            if (move_uploaded_file($tmp,$target_file)) {
-                move_uploaded_file($tmp,$target_file);
-                echo "<p class='bg-info w-25 ms-auto me-auto mt-4 mb-0 p-3 text-primary'>Upload Image Successfully!</p>";
-            }else{
-                echo "error";
-             }
-        }
-    }
-}
+include('upload.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,10 +18,10 @@ if (isset($_POST['store'])) {
   <form action="" method="post" class="needs-validation " novalidate  enctype="multipart/form-data">
     <label for="" class="form-label">Folder Name</label>
     <input type="text" name="file" id=""  class="form-control" placeholder="Enter Folder Name" required>
-    <span class="invalid-feedback"> Please choose a username.</span>
+    <span class="invalid-feedback"> Folder name field is required.</span>
     <label for="" class="form-label" >Choose Image</label>
     <input type="file" name="fileimg" id=""  class="form-control" aria-label="file example" required>
-    <span class="invalid-feedback"> Please choose a username.</span>
+    <span class="invalid-feedback"> Image field is required.</span>
        
     
     <input type="submit" value="Upload" name="store" class="bg-info text-light w-100 mt-3 border-0">
@@ -75,6 +36,32 @@ if (isset($_POST['store'])) {
 </script>
 </body>
 </html>
-<?php
-include('upload.php');
+<?php 
+ob_start();
+$files = glob('images/*/*.{jpg,jpeg,png}', GLOB_BRACE);
+echo "<div class='ms-5 mt-5'>";
+foreach ($files as $file) {
+  	$folder=basename(dirname($file));
+    echo "<div class='w-25  d-inline-block ms-5 me-5'>";
+    echo "<img src='$file' class='w-100 h-50'>";
+    echo "<p class='text-center mb-0 fs-4'>$folder</p><br>";
+    echo "<p class='ms-2 mt-0 w-100'><a href='$file' class=' mt-0 '>localhost/php-ojt-tutorials/Tutorial_06/$file</a></p>";
+
+    echo "<form method='post' class='w-100'>";
+    echo "<input type='hidden' name='file_path' value='$file'>";
+    echo "<input type='submit' class='w-100 pt-2 pb-2 text-dark bg-danger border-0 mb-2' name='delete' value='delete'>";
+    echo "</form>";
+    echo "</div>";
+}
+echo "</div>";
+if (isset($_POST['delete'])) {
+	$filePath = $_POST['file_path'];
+	if (file_exists($filePath)) {
+		unlink($filePath);
+    	header("Refresh:0");
+        echo "<script>alert('File deleted: $filePath')</script>";
+	}
+}
+ob_end_flush();
 ?>
+
