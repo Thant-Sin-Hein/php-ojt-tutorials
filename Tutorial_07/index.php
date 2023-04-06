@@ -18,7 +18,7 @@
     <span class="invalid-feedback"> Please choose a username.</span>
     <input type="submit" value="Generate" name="create" class="bg-primary pt-2 pb-2 text-light w-100 mt-3 border-0">
   </form>
-</div>
+  </div>
 <script src="libs/js/bootstrap.bundle.min.js"></script>
 <script src="libs/js/validate.js"></script>
 </body>
