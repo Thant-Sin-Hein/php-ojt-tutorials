@@ -31,19 +31,24 @@ $colString_number=PHPExcel_cell::columnIndexFromString($colString);
     echo "<h1>Test File</h1>";
     echo "<p>";
     $textFile=fopen("files/sample.txt","r") or die ("Unable to open file");
-    echo fread($textFile,filesize("files/sample.txt"));
+    while(!feof($textFile)) {
+        echo fgets($textFile) . "<br>";
+    }
+    fclose($textFile);
     echo "</p>";
     echo "<h1>Document File</h1>";
-    echo "<p>";
+    echo "<p>"; 
+
+    require "libs/vendor/autoload.php";
+
+    $phpWord = new \PhpOffice\PhpWord\PhpWord();
+    $section = $phpWord->addSection();
     
-    if (!file_exists('libs/sample.html')) {
-        $htmlWriter->save('libs/sample.html');
-        $html = file_get_contents('libs/sample.html');
-        echo $html;
-    }else {
-        $html = file_get_contents('libs/sample.html');
-        echo $html;
-    }
+    $objReader = \PhpOffice\PhpWord\IOFactory::createReader('Msdoc');
+    $phpRead = $objReader->load("files/sample.doc");
+    $text=$section->addText($phpRead->getText());
+    echo $text;
+    
     echo "</p>";
     echo "<h1>Excel File</h1>";
     echo "<p>";
