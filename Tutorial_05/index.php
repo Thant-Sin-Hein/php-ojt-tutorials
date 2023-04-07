@@ -1,12 +1,12 @@
 <?php
 require "libs/vendor/autoload.php";
+require_once "libs/vendor/phpoffice/phpexcel/classes/PHPExcel.php";
+require "libs/vendor/autoload.php";
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 $section = $phpWord->addSection();
 $objReader = \PhpOffice\PhpWord\IOFactory::createReader('Msdoc');
 $phpRead = $objReader->load("files/sample.doc");
-$section->getText($phpRead);
 
-require_once "libs/vendor/phpoffice/phpexcel/classes/PHPExcel.php";
 $path="files/sample.xlsx";
 $excelReader=PHPExcel_IOFactory::createReaderForFile($path);
 $excel_Obj=$excelReader->load($path);
@@ -38,21 +38,18 @@ $colString_number=PHPExcel_cell::columnIndexFromString($colString);
     echo "</p>";
     echo "<h1>Document File</h1>";
     echo "<p>"; 
-
-    require "libs/vendor/autoload.php";
-
-    $phpWord = new \PhpOffice\PhpWord\PhpWord();
-    $section = $phpWord->addSection();
-    
-    $objReader = \PhpOffice\PhpWord\IOFactory::createReader('Msdoc');
-    $phpRead = $objReader->load("files/sample.doc");
-    $text=$section->addText($phpRead->getText());
-    echo $text;
-    
+    $text=$phpRead->getSections();
+    foreach ($text as $value) {
+        $get=$value->getElements();
+        foreach ($get as $string) {
+            $allText = $string->getText();
+            echo $allText;
+        }
+    }
     echo "</p>";
+
     echo "<h1>Excel File</h1>";
     echo "<p>";
-    
     echo "<table style='width:97%;margin:0 auto;'>";
         for ($row=1; $row <= $lastRow; $row++) { 
             echo "<tr'>";
@@ -65,6 +62,7 @@ $colString_number=PHPExcel_cell::columnIndexFromString($colString);
         }
     echo "</table>";
     echo "</p>";
+    
     echo "<h1>CSV File</h1>";
     echo "<p>";
     echo "<table style='width:97%;margin:0 auto;'>";
