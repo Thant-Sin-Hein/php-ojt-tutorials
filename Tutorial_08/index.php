@@ -2,11 +2,25 @@
 error_reporting(E_ALL ^ E_WARNING);
 include("db.php");
 if ($_GET["id"]) {
-	$id =$_GET["id"];
-  	$delete="DELETE FROM posts WHERE ID=$id";
+    $id =$_GET["id"];
+    echo "<script>";
+    echo "var a=confirm('Are You sure to delete')
+    if(a==true) {
+      location='index.php?cid=$id';
+    }
+    else {
+      location='index.php';
+    }";
+    echo "</script>";
+
+
+}
+if ($_GET["cid"]) {
+    $cid=$_GET["cid"];
+    
+  	$delete="DELETE FROM posts WHERE ID=$cid";
   	$rundelete=mysqli_query($connect,$delete);
   	echo "<script>alert('Delete Successfully')</script>";
-
 }
 ?>
 <!DOCTYPE html>
