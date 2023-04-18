@@ -22,9 +22,7 @@ include('upload.php');
     <label for="" class="form-label" >Choose Image</label>
     <input type="file" name="fileimg" id=""  class="form-control" aria-label="file example" required>
     <span class="invalid-feedback"> Image field is required.</span>
-       
-    
-    <input type="submit" value="Upload" name="store" class="bg-info text-light w-100 mt-3 border-0">
+    <input type="submit" value="Upload" name="store" class="bg-info text-light w-100 mt-4 border-0">
   </form>
   </div>
 
