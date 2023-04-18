@@ -1,24 +1,46 @@
 <?php
 include("db.php");
+error_reporting(E_ALL ^ E_WARNING);
 $id=$_GET["id"];
 if (isset($_POST['update'])) {
-  	$title=$_POST['title'];
-  	$txtArea=$_POST['txtarea'];
-  	$checkbox=$_POST['check'];
-  	print_r($checkbox);
-  	$todayDate=date("Y-m-d");
-  	$update="UPDATE posts SET Title='$title',
+    if ($_POST['check']) { 
+        $title=$_POST['title'];
+  	    $txtArea=$_POST['txtarea'];
+  	    $checkbox=$_POST['check'];
+  	    $todayDate=date("Y-m-d");
+  	    $update="UPDATE posts SET Title='$title',
         Content='$txtArea',
         Is_published='$checkbox',
-        Date = '$todayDate'   
-        WHERE id='$id'";
-    $runinsert=mysqli_query($connect,$update);
-    if ($runinsert) {
-     	echo "<script>alert('Post Created Sucessful.')</script>";
+        updated_date = '$todayDate'   
+        WHERE ID='$id'";
+        $runinsert=mysqli_query($connect,$update);
+        if ($runinsert) {
+     	    echo "<script>alert('Post edited Sucessful.')</script>";
+            echo "<script>location='index.php'</script>";
+        }
+        else{
+     	    echo "<script>alert('Something went wrong!Try Again!')</script>";}
+        }
+    elseif (!$_POST['check']) {
+        $title=$_POST['title'];
+        $txtArea=$_POST['txtarea'];
+        $checkbox="Unpublished";
+        $todayDate=date("Y-m-d");
+        $update="UPDATE posts SET Title='$title',
+        Content='$txtArea',
+        Is_published='$checkbox',
+        updated_date = '$todayDate'   
+        WHERE ID='$id'";
+        $runinsert=mysqli_query($connect,$update);
+        if ($runinsert) {
+             echo "<script>alert('Post edited Sucessful.')</script>";
+            //echo "<script>location='index.php'</script>";
+      }
+      else{
+           echo "<script>alert('Something went wrong!Try Again!')</script>";}
+      }
     }
-    else{
-     	echo "<script>alert('Something went wrong!Try Again!')</script>";}
-    };
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +54,7 @@ if (isset($_POST['update'])) {
   <link rel="stylesheet" href="libs/css/bootstrap.min.css">
 </head>
 <body>
-<h1 class=" w-50  ms-auto me-auto bg-light border border-light p-2 fs-4 mb-0 mt-5">Update Post</h1>
+<h1 class=" w-50  ms-auto me-auto bg-light border border-light p-2 fs-4 mb-0 mt-5">Edit Post</h1>
 <div class=" w-50  ms-auto me-auto  border border-light p-2 mt-0">
   <form action="" method="post"  class="needs-validation " novalidate >
     <label for="" class="form-label ">Title</label>
