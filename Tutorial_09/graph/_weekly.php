@@ -7,7 +7,7 @@ $connect=mysqli_connect($server,$username,$password,$database);
 if(!$connect){
     echo mysqil_error($connect);
 }
-$totalweek="SELECT DATE_FORMAT(Date, '%W') AS day_of_week, COUNT(*) AS count
+$totalweek="SELECT DATE_FORMAT(created_date, '%W') AS day_of_week, COUNT(*) AS count
 FROM posts
 GROUP BY day_of_week
 ORDER BY FIELD(day_of_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')";

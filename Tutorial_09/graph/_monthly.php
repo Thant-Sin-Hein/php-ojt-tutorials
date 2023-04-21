@@ -7,9 +7,9 @@ $connect=mysqli_connect($server,$username,$password,$database);
 if(!$connect){
     echo mysqil_error($connect);
 }
-$sql = "SELECT DATE_FORMAT(Date, '%m-%d-%Y') AS date, COUNT(*) AS count
+$sql = "SELECT DATE_FORMAT(created_date, '%m-%d-%Y') AS date, COUNT(*) AS count
 FROM posts
-WHERE Date BETWEEN '2022-12-01' AND '2022-12-31'
+WHERE created_date BETWEEN '2022-12-01' AND '2022-12-31'
 GROUP BY date
 ORDER BY date";
 $rundate=mysqli_query($connect,$sql);

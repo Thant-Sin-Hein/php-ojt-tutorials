@@ -12,18 +12,19 @@ if (isset($_POST['create'])) {
     	$runcheck=mysqli_query($connect,$checkTitle);
     	$count=mysqli_num_rows($runcheck);
     if ($count==0) {
-      	$insertcustomer="INSERT INTO posts(Title,Content,Is_published,Date)values('$title','$txtArea','$checkbox','$todayDate')";
+      	$insertcustomer="INSERT INTO posts(Title,Content,Is_published,created_date)values('$title','$txtArea','$checkbox','$todayDate')";
       	$runinsert=mysqli_query($connect,$insertcustomer);
       
     if ($runinsert) {
-      	header("Refresh:0");
      	echo "<script>alert('Post Created Sucessful.')</script>";
+      echo "<script>location='index.php'</script>";
     }
     else{
      	echo "<script>alert('Something went wrong!Try Again!')</script>";}
     }
   	else {
-    	echo "Title Name is already exits";
+      header("Refresh:0");
+      echo "<script>alert('Title name is already exit.')</script>";
   	}
   	}
 elseif (!$_POST['check']) {
@@ -36,17 +37,18 @@ elseif (!$_POST['check']) {
     $runcheck=mysqli_query($connect,$checkTitle);
     $count=mysqli_num_rows($runcheck);
     if ($count==0) {
-      	$insertcustomer="INSERT INTO posts(Title,Content,Is_published,Date)values('$title','$txtArea','$checkbox','$todayDate')";
+      	$insertcustomer="INSERT INTO posts(Title,Content,Is_published,created_date)values('$title','$txtArea','$checkbox','$todayDate')";
       	$runinsert=mysqli_query($connect,$insertcustomer);
     if ($runinsert) {
-     	header("Refresh:0");
      	echo "<script>alert('Post Created Sucessful.')</script>";
+      echo "<script>location='index.php'</script>";
     }
     else{
      	echo "<script>alert('Something went wrong!Try Again!')</script>";}
     }
   	else {
-    	echo "Title Name is already exits";
+      header("Refresh:0");
+      echo "<script>alert('Title name is already exit.')</script>";
   	}
 }
   

@@ -34,7 +34,7 @@ if (isset($_POST['update'])) {
         $runinsert=mysqli_query($connect,$update);
         if ($runinsert) {
              echo "<script>alert('Post edited Sucessful.')</script>";
-            //echo "<script>location='index.php'</script>";
+            echo "<script>location='index.php'</script>";
       }
       else{
            echo "<script>alert('Something went wrong!Try Again!')</script>";}

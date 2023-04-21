@@ -12,7 +12,7 @@ if (isset($_POST['create'])) {
     	$runcheck=mysqli_query($connect,$checkTitle);
     	$count=mysqli_num_rows($runcheck);
     if ($count==0) {
-      	$insertcustomer="INSERT INTO posts(Title,Content,Is_published,Date)values('$title','$txtArea','$checkbox','$todayDate')";
+      	$insertcustomer="INSERT INTO posts(Title,Content,Is_published,created_date)values('$title','$txtArea','$checkbox','$todayDate')";
       	$runinsert=mysqli_query($connect,$insertcustomer);
       
     if ($runinsert) {
@@ -36,7 +36,7 @@ elseif (!$_POST['check']) {
     $runcheck=mysqli_query($connect,$checkTitle);
     $count=mysqli_num_rows($runcheck);
     if ($count==0) {
-      	$insertcustomer="INSERT INTO posts(Title,Content,Is_published,Date)values('$title','$txtArea','$checkbox','$todayDate')";
+      	$insertcustomer="INSERT INTO posts(Title,Content,Is_published,created_date)values('$title','$txtArea','$checkbox','$todayDate')";
       	$runinsert=mysqli_query($connect,$insertcustomer);
     if ($runinsert) {
      	header("Refresh:0");

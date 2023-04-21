@@ -4,7 +4,7 @@
 @section('content')
 
      <!-- Bootstrap Boilerplate... -->
-
+    
      <div class="panel-body border border-1 w-50 mt-5 me-0 ms-auto me-auto">
         @include('common.errors')
         <div class=" pt-3 pb-3 bg-light w-100 border border-1"><h6 class=" w-75 mt-0 me-0 ms-auto me-auto">New Task</h6></div>

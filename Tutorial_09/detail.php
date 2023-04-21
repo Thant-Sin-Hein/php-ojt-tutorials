@@ -21,7 +21,7 @@ $data=mysqli_fetch_array($runselect);
 <h1 class=" w-50  ms-auto me-auto bg-light border border-secondary p-2 fs-4 mb-0 border-bottom-0 mt-5">Post Details</h1>
 <div class="border border-secondary w-50 ms-auto me-auto">
 <h2 class=" w-100  bg-light  p-2 fs-4 mb-0"><?php echo $data['Title']?></h2>
-<p class=" w-100  bg-light  p-2  mb-0"><?php echo $data['Is_published']?> at <?php echo date('M d,Y', strtotime($data['Date']))?></p>
+<p class=" w-100  bg-light  p-2  mb-0"><?php echo $data['Is_published']?> at <?php echo date('M d,Y', strtotime($data['created_date']))?></p>
 <p class=" w-100  bg-light  p-2  mb-0"><?php echo $data['Content']?></p>
 <input class='btn btn-secondary ms-2 mt-4 mb-2 btn-sm' onclick="history.back()" value="Back">
 

@@ -60,7 +60,7 @@ if ($_GET["cid"]) {
           		<td>$row[Title]</td>
           		<td>" .substr($row['Content'], 0, 50) . '...' ."</td>
           		<td>$row[Is_published]</td>
-          		<td>" . date('M d,Y', strtotime($row['Date'])) . "</td>
+          		<td>" . date('M d,Y', strtotime($row['created_date'])) . "</td>
           		<td>
             	<a href='detail.php?id=$row[ID]' class='btn btn-info btn-sm'>View</a>
             	<a href='edit.php?id=$row[ID]' class='btn btn-danger btn-sm'>Edit</a>
