@@ -13,7 +13,7 @@ if ($count>0) {
     $data=mysqli_fetch_array($runemailCheck);
     if(mail($sendEmail,$subject,$body,$headers)) {
         echo "<script>alert('your account is found.please change your password!')</script>";
-        echo "<script>location='reset_password.php'</script>";
+        echo "<script>location='reset_password.php?email=$sendEmail'</script>";
     } 
     else {
         echo "error";

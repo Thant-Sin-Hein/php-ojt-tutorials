@@ -42,4 +42,25 @@ class UserService implements UserServiceInterface
     {
        return $this->userDao->validateStudent($request);
     }
+
+    public function getStudent(): object
+    {
+        return $this->userDao->getStudent();
+    }
+
+    public function getStudentById(int $id): object
+    {
+        return $this->userDao->getStudentById($id);
+    }
+
+    public function updateStudent(array $data, int $id): void
+    {
+        $this->userDao->updateStudent($data, $id);
+    }
+
+    public function deleteStudent($students): void
+    {
+        $this->userDao->deleteStudent($students);
+    }
+
 }

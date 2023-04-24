@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Models\student;
+use App\Models\major;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +30,9 @@ Route::put('/majorEdit/{id}', [StudentController::class, 'update'])->name('major
 //student
 Route::get('/',[StudentController::class,'studentCreate'])->name('student#create');
 Route::post('/studentStore',[StudentController::class,'studentStore'])->name('student#store');
+Route::get('/studentShow',[StudentController::class,'studentShow'])->name('student#show');
+Route::get('/studentEdit/{id}/edit',[StudentController::class,'studentEdit'])->name('student#edit');
+Route::put('/studentEdit/{id}', [StudentController::class, 'studentUpdate'])->name('student#update');
+Route::delete('/studentShow/{students}',[StudentController::class,'studentRemove'])->name('student#remove');
+
+

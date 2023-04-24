@@ -19,6 +19,7 @@ if (isset($_POST['sub'])) {
         $runinsert=mysqli_query($connect,$insertuser);
         if ($runinsert) {
             echo "<script>alert('User Register Sucessful.')</script>";
+            header("location:login.php");
         }
         else{
             echo "<script>alert('Something went wrong!Try Again!')</script>";}

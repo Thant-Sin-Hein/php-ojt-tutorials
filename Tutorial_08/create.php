@@ -6,7 +6,6 @@ if (isset($_POST['create'])) {
     	$title=$_POST['title'];
     	$txtArea=$_POST['txtarea'];
     	$checkbox="Published";
-    	print_r($checkbox);
     	$todayDate=date("Y-m-d");
     	$checkTitle="SELECT * FROM posts WHERE Title='$title'";
     	$runcheck=mysqli_query($connect,$checkTitle);
@@ -16,8 +15,7 @@ if (isset($_POST['create'])) {
       	$runinsert=mysqli_query($connect,$insertcustomer);
       
     if ($runinsert) {
-     	echo "<script>alert('Post Created Sucessful.')</script>";
-      echo "<script>location='index.php'</script>";
+      header("location:index.php");
     }
     else{
      	echo "<script>alert('Something went wrong!Try Again!')</script>";}
@@ -31,7 +29,6 @@ elseif (!$_POST['check']) {
     $title=$_POST['title'];
     $txtArea=$_POST['txtarea'];
     $checkbox="Unpublished";
-    print_r($checkbox);
     $todayDate=date("Y-m-d");
     $checkTitle="SELECT * FROM posts WHERE Title='$title'";
     $runcheck=mysqli_query($connect,$checkTitle);
@@ -40,8 +37,7 @@ elseif (!$_POST['check']) {
       	$insertcustomer="INSERT INTO posts(Title,Content,Is_published,created_date)values('$title','$txtArea','$checkbox','$todayDate')";
       	$runinsert=mysqli_query($connect,$insertcustomer);
     if ($runinsert) {
-     	echo "<script>alert('Post Created Sucessful.')</script>";
-      echo "<script>location='index.php'</script>";
+      header("location:index.php");
     }
     else{
      	echo "<script>alert('Something went wrong!Try Again!')</script>";}

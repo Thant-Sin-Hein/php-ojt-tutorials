@@ -16,10 +16,12 @@
                  <label for="task" class="col-sm-12 control-label text-dark">Name</label>
 
                  <div class="col-sm-12">
-                     <input type="text" name="name" id="task-name" class="form-control" placeholder="name">
+                     <input type="text" name="name" id="task-name" class="form-control" placeholder="name" value="{{$user->name}}">
                  </div>
              </div>
-
+             @error('name')
+                <span class="text-danger">{{ $message }}</span>
+             @enderror
              <div class="form-group mt-4">
                  <div class="d-flex justify-content-between">
                     <a href="#"  class="btn btn-secondary text-light" >Back</a>

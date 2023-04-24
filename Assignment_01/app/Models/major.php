@@ -11,8 +11,8 @@ class major extends Model
     use HasFactory;
     protected $fillable = ['id','name','created-at','updated-at'];
 
-    public function student()
-    {
-        return $this->hasMany(student::class);
-    }
+    //public function student()
+    //{
+    //    return $this->hasOne(student::class,'major_id','id');
+    //}
 }

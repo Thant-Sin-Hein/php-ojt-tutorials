@@ -5,6 +5,15 @@ include("../db.php");
 session_start();
 $changepass= $_SESSION['newpass'];
 $hashedChangepass=password_hash($changepass,PASSWORD_DEFAULT);
+$emailCheck="SELECT * FROM user where email='$oldemail'";
+$runemailCheck=mysqli_query($connect,$emailCheck);
+$data=mysqli_fetch_array($runemailCheck);
+if ($_GET["email"]) {
+  $sendEmail=$_GET['email'];
+  $sendEmailCheck="SELECT * FROM user where email='$sendEmail'";
+  $runSendEmailCheck=mysqli_query($connect,$sendEmailCheck);
+  $data=mysqli_fetch_array($runSendEmailCheck); 
+}
 if ($_GET["id"]) {
 	$id =$_GET["id"];
   	$updatePassword="UPDATE user 
@@ -33,7 +42,7 @@ if ($_GET["id"]) {
   <form action="" method="post"  class="needs-validation " novalidate >
 
     <label for="" class="form-label mt-2">Email</label>
-    <input type="text" name="oldemail"  class="form-control" placeholder="name@example.com" required>
+    <input type="text" name="oldemail"  class="form-control" placeholder="name@example.com" value="<?php echo $data['email']?>" readonly required>
     <span class="invalid-feedback">Please choose your email.</span>
 
     <label for="" class="form-label mt-2">New Password</label>
@@ -56,8 +65,6 @@ if ($_GET["id"]) {
           $count=mysqli_num_rows($runemailCheck);
           if ($count>0) {
             $data=mysqli_fetch_array($runemailCheck);
-            //$_SESSION['cid']=$data['CustomerId'];
-            //$_SESSION['cname']=$data['CustomerName'];
             echo "<script>location='reset_password.php?id=$data[id]'</script>";
     
           }

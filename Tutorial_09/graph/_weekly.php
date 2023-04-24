@@ -1,12 +1,5 @@
 <?php 
-$server="localhost";
-$username="root";
-$password="panda269";
-$database="posts";
-$connect=mysqli_connect($server,$username,$password,$database);
-if(!$connect){
-    echo mysqil_error($connect);
-}
+include('../db.php');
 $totalweek="SELECT DATE_FORMAT(created_date, '%W') AS day_of_week, COUNT(*) AS count
 FROM posts
 GROUP BY day_of_week

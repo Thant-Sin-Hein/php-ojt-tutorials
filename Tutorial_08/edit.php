@@ -2,6 +2,9 @@
 include("db.php");
 error_reporting(E_ALL ^ E_WARNING);
 $id=$_GET["id"];
+$select="SELECT * FROM posts WHERE ID=$id";
+$runselect=mysqli_query($connect,$select);
+$data=mysqli_fetch_array($runselect);
 if (isset($_POST['update'])) {
     if ($_POST['check']) { 
         $title=$_POST['title'];
@@ -15,8 +18,7 @@ if (isset($_POST['update'])) {
         WHERE ID='$id'";
         $runinsert=mysqli_query($connect,$update);
         if ($runinsert) {
-     	    echo "<script>alert('Post edited Sucessful.')</script>";
-            echo "<script>location='index.php'</script>";
+            header("location:index.php");
         }
         else{
      	    echo "<script>alert('Something went wrong!Try Again!')</script>";}
@@ -33,8 +35,7 @@ if (isset($_POST['update'])) {
         WHERE ID='$id'";
         $runinsert=mysqli_query($connect,$update);
         if ($runinsert) {
-             echo "<script>alert('Post edited Sucessful.')</script>";
-            echo "<script>location='index.php'</script>";
+            header("location:index.php");
       }
       else{
            echo "<script>alert('Something went wrong!Try Again!')</script>";}
@@ -58,13 +59,22 @@ if (isset($_POST['update'])) {
 <div class=" w-50  ms-auto me-auto  border border-light p-2 mt-0">
   <form action="" method="post"  class="needs-validation " novalidate >
     <label for="" class="form-label ">Title</label>
-    <input type="text" name="title"  class="form-control" placeholder="name@example.com" required>
+    <input type="text" name="title"  class="form-control" placeholder="name@example.com" value="<?php echo $data['Title']?>" required>
     <span class="invalid-feedback"> Please choose a title.</span>
+
     <label for="" class="form-label ">Content</label>
-    <textarea name="txtarea" cols="10" rows="5"  class="form-control"  required></textarea>
+    <textarea name="txtarea" cols="10" rows="5"  class="form-control"  required><?php echo $data['Content']?></textarea>
     <span class="invalid-feedback"> Please choose a content.</span>
-    <input type="checkbox" name="check" value="published" class="mt-3 mb-3">
-    <label >Publish</label>
+    <?php
+    if ($data['Is_published']=='Published') {
+        echo "<input type='checkbox' name='check' value='Publish' class='mt-3 mb-3' checked>
+            <label >Publish</label>";
+    }else {
+        echo "<input type='checkbox' name='check' value='Publish' class='mt-3 mb-3'>
+            <label >Publish</label>";
+    }
+    ?>
+    
     <div class='w-100 d-flex justify-content-between'>
     <input type="submit" value="Back" name="back"  onclick="history.back()" class="btn btn-secondary ">
     <input type="submit" value="Update" name="update" class="btn btn-primary">

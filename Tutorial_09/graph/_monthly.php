@@ -1,12 +1,5 @@
 <?php 
-$server="localhost";
-$username="root";
-$password="panda269";
-$database="posts";
-$connect=mysqli_connect($server,$username,$password,$database);
-if(!$connect){
-    echo mysqil_error($connect);
-}
+include('../db.php');
 $sql = "SELECT DATE_FORMAT(created_date, '%m-%d-%Y') AS date, COUNT(*) AS count
 FROM posts
 WHERE created_date BETWEEN '2022-12-01' AND '2022-12-31'
@@ -18,12 +11,25 @@ foreach ($rundate as $date) {
     $numbercount[]=$date['count'];
 }
 $insertedTime=array_combine($numberDate,$numbercount);
-$monthInserted= array("12-01-2022" => 0,"12-02-2022" => 0,"12-03-2022" => 0,"12-04-2022" => 0,"12-05-2022" => 0,"12-06-2022" => 0,"12-07-2022" => 0,"12-08-2022" => 0,"12-09-2022" => 0,"12-10-2022" => 0,"12-11-2022" => 0,"12-12-2022" => 0,"12-13-2022" => 0,"12-14-2022" => 0,"12-15-2022" => 0,"12-16-2022" => 0,"12-17-2022" => 0,"12-18-2022" => 0,"12-19-2022" => 0,"12-20-2022" => 0,"12-21-2022" => 0,"12-22-2022" => 0,"12-23-2022" => 0,"12-24-2022" => 0,"12-25-2022" => 0,"12-26-2022" => 0,"12-27-2022" => 0,"12-28-2022" => 0,"12-29-2022" => 0,"12-30-2022" => 0,);
+
+$year = date('2022');
+    $month = date('12');
+    $num_days = date('t', strtotime("$year-$month-01"));
+    $date = [];
+    for($day = 1; $day <= $num_days; $day++){
+        $formatted_day = sprintf("%02d", $day);
+        array_push($date , date("$month-$formatted_day-$year"));
+    }
+    $insertzero=[];
+    for($zero = 1; $zero <= 31; $zero++){
+        array_push($insertzero , "0");
+    }
+$monthInserted=array_combine($date,$insertzero);
 $combine=array_replace($monthInserted,$insertedTime);
 foreach($combine as $com) {
     $total[]=$com;
 }
-foreach(range(1, 30) as $number) {
+foreach(range(1, 31) as $number) {
     $monthly[]= "12-".$number ."-2022";
 }
 ?>

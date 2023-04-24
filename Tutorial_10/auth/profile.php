@@ -20,7 +20,7 @@ if (isset($_POST['update'])) {
         $runupdate=mysqli_query($connect,$update);
         if($runupdate){
             echo "<script>alert('Profile Update Successful!')</script>";
-            echo "<script>location='profile.php'</script>";
+            echo "<script>location='../index.php'</script>";
         }
         else {
             echo "<script>alert('Try again later!')</script>";
@@ -30,6 +30,17 @@ if (isset($_POST['update'])) {
 else {
     $upimg=$_FILES['imgupload']['name'];
     $folder="../images/";
+    $file_extension=pathinfo($upimg,PATHINFO_EXTENSION);
+    $allowed_extensions=array('jpg','jpeg','png');
+    $max_file_size = 1048576;
+    $file_size = $_FILES["imgupload"]["size"];
+    if (!in_array($file_extension, $allowed_extensions)) {
+        echo "<script>alert('*Only JPG, JPEG, and PNG files are allowed.')</script>";
+    }
+    elseif ($file_size > $max_file_size) {
+        echo "<script>alert('*File size must be less than 1MB!')</script>";
+    }
+    else {
         if ($upimg) {
             $filename=$folder."".$upimg;
             $copy=copy($_FILES['imgupload']['tmp_name'],$filename);
@@ -52,6 +63,7 @@ else {
             echo "<script>alert('Try again later!')</script>";
             echo "<script>location='profile.php'</script>";
             }
+    }
       
     }
 }
