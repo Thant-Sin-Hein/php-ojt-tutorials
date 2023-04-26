@@ -17,9 +17,6 @@ use App\Models\major;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 //major
 Route::get('/majorCreate',[MajorController::class,'majorCreate'])->name('major#create');
 Route::post('/majorStore',[MajorController::class,'majorStore'])->name('major#store');
