@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\MajorController;
 use App\Models\student;
 use App\Models\major;
 
@@ -15,24 +16,20 @@ use App\Models\major;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 //major
-Route::get('/majorCreate',[StudentController::class,'majorCreate'])->name('major#create');
-Route::post('/majorStore',[StudentController::class,'majorStore'])->name('major#store');
-Route::get('/majorShow',[StudentController::class,'majorShow'])->name('major#show');
-Route::delete('/majorShow/{majors}',[StudentController::class,'majorRemove'])->name('major#remove');
-Route::get('/majorEdit/{id}/edit',[StudentController::class,'majorEdit'])->name('major#edit');
-Route::put('/majorEdit/{id}', [StudentController::class, 'update'])->name('major#update');
+Route::get('/majorCreate',[MajorController::class,'majorCreate'])->name('major#create');
+Route::post('/majorStore',[MajorController::class,'majorStore'])->name('major#store');
+Route::get('/majorShow',[MajorController::class,'majorShow'])->name('major#show');
+Route::delete('/majorShow/{majors}',[MajorController::class,'majorRemove'])->name('major#remove');
+Route::get('/majorEdit/{id}/edit',[MajorController::class,'majorEdit'])->name('major#edit');
+Route::put('/majorEdit/{id}', [MajorController::class, 'update'])->name('major#update');
 
 //student
-Route::get('/',[StudentController::class,'studentCreate'])->name('student#create');
+Route::get('/studentCreate',[MajorController::class,'studentCreate'])->name('student#create');
 Route::post('/studentStore',[StudentController::class,'studentStore'])->name('student#store');
-Route::get('/studentShow',[StudentController::class,'studentShow'])->name('student#show');
+Route::get('/',[StudentController::class,'studentShow'])->name('student#show');
 Route::get('/studentEdit/{id}/edit',[StudentController::class,'studentEdit'])->name('student#edit');
 Route::put('/studentEdit/{id}', [StudentController::class, 'studentUpdate'])->name('student#update');
-Route::delete('/studentShow/{students}',[StudentController::class,'studentRemove'])->name('student#remove');
+Route::delete('/{students}',[StudentController::class,'studentRemove'])->name('student#remove');
 
 
