@@ -8,6 +8,7 @@ use App\Contracts\Services\StudentServiceInterface;
 use App\Contracts\Services\MajorServiceInterface;
 use App\Http\Requests\StudentUpdateRequest;
 use App\Models\student;
+use App\Http\Requests\StudentCreateRequest;
 
 class StudentController extends Controller
 {
@@ -32,24 +33,12 @@ class StudentController extends Controller
             'major' => $major
         ]);
     }
-    public function studentStore(Request $request) {
-        $validator= $this->studentService->validateStudent($request);
-        if ($validator->fails()) {
-            return redirect('/')
-                ->withInput()
-                ->withErrors($validator);
-        }
-        else {
-            $student = new student;
-            $student->name = $request->name;
-            $student->major_id=$request->major;
-            $student->phone=$request->phone;
-            $student->email=$request->email;
-            $student->address=$request->address;
-            $student->save();
+    public function studentStore(StudentCreateRequest $request) {
+        $this->studentService->createStudent($request->only([
+            'name','major','phone','email','address',
+        ]));
+        return redirect()->route('student#show');
 
-        return redirect('/');
-        }
     }
     public function studentShow() {
         $student=$this->studentService->getStudent();

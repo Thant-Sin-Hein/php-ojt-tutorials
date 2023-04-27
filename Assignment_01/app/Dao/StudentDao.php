@@ -22,6 +22,17 @@ class StudentDao implements StudentDaoInterface
         ]);
     }
 
+    public function createStudent(array $data): void
+    {
+        student::create([
+            'name' => $data['name'],
+            'phone'=>$data['phone'],
+            'major_id' =>$data['major'],
+            'email'=>$data['email'],
+            'address'=>$data['address'],
+        ]);
+    }
+
     public function getStudent(): object
     {
         return student::select('students.*','majors.name as subject')

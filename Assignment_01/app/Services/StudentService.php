@@ -43,4 +43,9 @@ class StudentService implements StudentServiceInterface
         $this->studentDao->deleteStudent($students);
     }
 
+    public function createStudent(array $data): void
+    {
+        $this->studentDao->createStudent($data);
+    }
+
 }
