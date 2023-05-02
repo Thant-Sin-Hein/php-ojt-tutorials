@@ -16,20 +16,25 @@ use App\Models\major;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 //major
 Route::get('/majorCreate',[MajorController::class,'majorCreate'])->name('major#create');
-Route::post('/majorStore',[MajorController::class,'majorStore'])->name('major#store');
 Route::get('/majorShow',[MajorController::class,'majorShow'])->name('major#show');
-Route::delete('/majorShow/{majors}',[MajorController::class,'majorRemove'])->name('major#remove');
-Route::get('/majorEdit/{id}/edit',[MajorController::class,'majorEdit'])->name('major#edit');
-Route::put('/majorEdit/{id}', [MajorController::class, 'update'])->name('major#update');
 
 //student
-Route::get('/studentCreate',[MajorController::class,'studentCreate'])->name('student#create');
-Route::post('/studentStore',[StudentController::class,'studentStore'])->name('student#store');
 Route::get('/',[StudentController::class,'studentShow'])->name('student#show');
-Route::get('/studentEdit/{id}/edit',[StudentController::class,'studentEdit'])->name('student#edit');
-Route::put('/studentEdit/{id}', [StudentController::class, 'studentUpdate'])->name('student#update');
-Route::delete('/{students}',[StudentController::class,'studentRemove'])->name('student#remove');
+Route::get('/studentCreate',[StudentController::class,'studentCreate'])->name('student#create');
+//Route::post('/studentStore',[StudentController::class,'studentStore'])->name('student#store');
+//Route::get('/studentEdit/{id}/edit',[StudentController::class,'studentEdit'])->name('student#edit');
+//Route::put('/studentEdit/{id}', [StudentController::class, 'studentUpdate'])->name('student#update');
+//Route::delete('/{students}',[StudentController::class,'studentRemove'])->name('student#remove');
 
+//export
+Route::get('students/export/', [StudentController::class, 'export'])->name('student#export');
+
+//import
+Route::post('students/import/', [StudentController::class, 'import'])->name('student#import');
+
+//search
+Route::get('/search',[StudentController::class,'search'])->name('student#search');
 
