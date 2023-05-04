@@ -14,10 +14,10 @@ class MajorDao implements MajorDaoInterface
         return major::orderBy('created_at', 'asc')->get();
     }
 
-    public function validateName($request): object
+    public function createMajor(array $data): void
     {
-        return  Validator::make($request->all(), [
-            'name' => 'required|max:255|unique:majors,name',
+        major::create([
+            'name' => $data['name'],
         ]);
     }
 

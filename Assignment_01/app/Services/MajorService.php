@@ -21,10 +21,11 @@ class MajorService implements MajorServiceInterface
     {
         return $this->majorDao->getName();
     }
-    public function validateName($request): object
+    public function createMajor(array $data): void
     {
-       return $this->majorDao->validateName($request);
+        $this->majorDao->createMajor($data);
     }
+
     public function deleteName($majors): void
     {
         $this->majorDao->deleteName($majors);

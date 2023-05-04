@@ -6,7 +6,8 @@ use App\Models\major;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Contracts\Services\MajorServiceInterface;
-use App\Http\Requests\StudentUpdateRequest;
+use App\Http\Requests\MajorUpdateRequest;
+use App\Http\Requests\MajorCreateRequest;
 use App\Models\student;
 
 class MajorController extends Controller
@@ -25,44 +26,43 @@ class MajorController extends Controller
         //major
         public function studentCreate() {
             $major=$this->majorService->getName();
-            return view('student.studentCreate', [
+            return view('student.create', [
                 'major' => $major
             ]);
         }
 
         public function majorCreate() {
-            return view('major.majorCreate');
+            return view('major.create');
         }
-        public function majorStore(Request $request) {
-            $validator= $this->majorService->validateName($request);
-            if ($validator->fails()) {
-                return redirect('/majorCreate')
-                    ->withInput()
-                    ->withErrors($validator);
-            }
-            else {
-                $major = new major;
-                $major->name = $request->name;
-                $major->save();
+        //majorCreate
+        public function majorStore(MajorCreateRequest $request) {
+            $this->majorService->createMajor($request->only([
+                'name',
+            ]));
+            return redirect()->route('major#show');
+        }
 
-            return redirect('/majorShow');
-            }
-        }
+        //majorShow
         public function majorShow() {
             $major=$this->majorService->getName();
-            return view('major.major', [
+            return view('major.index', [
                 'major' => $major
             ]);
         }
+
+        //majorRemove
         public function majorRemove(major $majors) {
             $this->majorService->deleteName($majors);
-            return redirect('/majorShow');
+            return redirect('/major-show');
         }
+
+        //majorUpdate
         public function majorEdit($id) {
             $user = $this->majorService->getNameById($id);
-            return view('major.majorEdit',compact('user'));
+            return view('major.edit',compact('user'));
         }
-        public function update(StudentUpdateRequest $request, $id) {
+
+        public function update(MajorUpdateRequest $request, $id) {
             $this->majorService->updateName($request->only([
                 'name',
             ]), $id);

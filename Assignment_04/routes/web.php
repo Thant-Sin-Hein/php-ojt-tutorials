@@ -24,10 +24,6 @@ Route::get('/majorShow',[MajorController::class,'majorShow'])->name('major#show'
 //student
 Route::get('/',[StudentController::class,'studentShow'])->name('student#show');
 Route::get('/studentCreate',[StudentController::class,'studentCreate'])->name('student#create');
-//Route::post('/studentStore',[StudentController::class,'studentStore'])->name('student#store');
-//Route::get('/studentEdit/{id}/edit',[StudentController::class,'studentEdit'])->name('student#edit');
-//Route::put('/studentEdit/{id}', [StudentController::class, 'studentUpdate'])->name('student#update');
-//Route::delete('/{students}',[StudentController::class,'studentRemove'])->name('student#remove');
 
 //export
 Route::get('students/export/', [StudentController::class, 'export'])->name('student#export');

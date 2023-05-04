@@ -26,13 +26,15 @@ class StudentController extends Controller
         $this->studentService = $studentServiceInterface;
         $this->majorService = $majorServiceInterface;
     }
-    //student
+    // create
     public function studentCreate() {
         $major=$this->majorService->getName();
-        return view('student.studentCreate', [
+        return view('student.create', [
             'major' => $major
         ]);
     }
+
+    //show
     public function studentStore(StudentCreateRequest $request) {
         $this->studentService->createStudent($request->only([
             'name','major','phone','email','address',
@@ -42,25 +44,28 @@ class StudentController extends Controller
     }
     public function studentShow() {
         $student=$this->studentService->getStudent();
-        return view('student.student', [
+        return view('student.index', [
             'student' => $student
         ]);
     }
+
+    //update
     public function studentEdit($id) {
         $major=$this->majorService->getName();
-        $user = $this->studentService->getStudentById($id);
-        return view('student.studentEdit',compact('user'),[
+        $student = $this->studentService->getStudentById($id);
+        return view('student.edit',compact('student'),[
             'major' => $major
         ]);
     }
 
     public function studentUpdate(StudentUpdateRequest $request, $id) {
         $this->studentService->updateStudent($request->only([
-            'name','major_id','phone','email','address',
+            'name','major','phone','email','address',
         ]), $id);
         return redirect()->route('student#show');
     }
 
+    //delete
     public function studentRemove(student $students) {
         $this->studentService->deleteStudent($students);
         return redirect('/');

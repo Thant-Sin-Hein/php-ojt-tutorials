@@ -17,19 +17,19 @@ use App\Models\major;
 |
 */
 //major
-Route::get('/majorCreate',[MajorController::class,'majorCreate'])->name('major#create');
-Route::post('/majorStore',[MajorController::class,'majorStore'])->name('major#store');
-Route::get('/majorShow',[MajorController::class,'majorShow'])->name('major#show');
-Route::delete('/majorShow/{majors}',[MajorController::class,'majorRemove'])->name('major#remove');
-Route::get('/majorEdit/{id}/edit',[MajorController::class,'majorEdit'])->name('major#edit');
-Route::put('/majorEdit/{id}', [MajorController::class, 'update'])->name('major#update');
+Route::get('/major-create',[MajorController::class,'majorCreate'])->name('major#create');
+Route::post('/major-store',[MajorController::class,'majorStore'])->name('major#store');
+Route::get('/major-show',[MajorController::class,'majorShow'])->name('major#show');
+Route::delete('/major-show/{majors}',[MajorController::class,'majorRemove'])->name('major#remove');
+Route::get('/major-edit/{id}/edit',[MajorController::class,'majorEdit'])->name('major#edit');
+Route::put('/major-edit/{id}', [MajorController::class, 'update'])->name('major#update');
 
 //student
-Route::get('/studentCreate',[MajorController::class,'studentCreate'])->name('student#create');
-Route::post('/studentStore',[StudentController::class,'studentStore'])->name('student#store');
+Route::get('/student-create',[MajorController::class,'studentCreate'])->name('student#create');
+Route::post('/student-store',[StudentController::class,'studentStore'])->name('student#store');
 Route::get('/',[StudentController::class,'studentShow'])->name('student#show');
-Route::get('/studentEdit/{id}/edit',[StudentController::class,'studentEdit'])->name('student#edit');
-Route::put('/studentEdit/{id}', [StudentController::class, 'studentUpdate'])->name('student#update');
+Route::get('/student-edit/{id}/edit',[StudentController::class,'studentEdit'])->name('student#edit');
+Route::put('/student-edit/{id}', [StudentController::class, 'studentUpdate'])->name('student#update');
 Route::delete('/{students}',[StudentController::class,'studentRemove'])->name('student#remove');
 
 

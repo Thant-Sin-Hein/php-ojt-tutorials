@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StudentUpdateRequest extends FormRequest
+class MajorUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +25,6 @@ class StudentUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255'],
-            'phone'=>['required','max:20'],
-            'email' => ['required', 'max:255'],
-            'address'=>['required','max:255'],
         ];
     }
 }

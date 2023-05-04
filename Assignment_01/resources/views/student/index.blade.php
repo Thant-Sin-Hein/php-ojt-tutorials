@@ -1,17 +1,6 @@
 @extends('layout.app')
 
 @section('content')
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container ">
-        <div class="d-flex justify-content-between w-100">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <p class="pt-2">
-                <a href="{{route('student#show')}}"  class="text-dark ms-2" style="text-decoration:none;"> Students</a>
-                <a href="{{route('major#show')}}" class="text-secondary" style="text-decoration:none;"> Majors</a>
-            </p>
-        </div>
-    </div>
-</nav>
 
 <div class=" w-75 mt-3 me-0 ms-auto me-auto">
     <a href="{{route('student#create')}}" class="btn btn-primary">Create</a>
@@ -56,7 +45,7 @@
                 <form action="{{ url('/'.$students->id) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <a href="{{ url('studentEdit/'.$students->id.'/edit') }}" class="btn btn-success btn-sm">Edit</a>
+                    <a href="{{ url('student-edit/'.$students->id.'/edit') }}" class="btn btn-success btn-sm">Edit</a>
                      <button type="submit" class="btn btn-danger btn-sm"> Delete </button>
                 </form>
                 </td>
