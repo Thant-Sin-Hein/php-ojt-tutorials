@@ -51,10 +51,6 @@ class StudentController extends Controller
     }
 
     public function store (Request $request) {
-         $data = [
-            'body' => $request->email
-        ];
-
 
         $message = [
             'required'=>'The :attribute field is required',
@@ -71,8 +67,12 @@ class StudentController extends Controller
             $student = $this->studentService->createStudent($request->only([
                 'name','major','phone','email','address'
             ]));
-            $mail =Mail::to('thant269269@gmail.com')->send(new mailNotify($data));
-            return response()->json([$student,$mail,'msg'=>'mail send success'],200);
+            $data = [
+                "subject"=>"This is testing email",
+                "body"=>$request->email
+            ];
+            $mail = Mail::to($request->email)->send(new mailNotify($data));
+            return response()->json([$student,$mail,'msg'=>'success','mail'=>'Your mail is found'],200);
         }
     }
 

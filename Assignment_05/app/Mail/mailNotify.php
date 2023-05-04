@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Http\Controllers\StudentController;
 
 class mailNotify extends Mailable
 {
@@ -29,7 +30,7 @@ class mailNotify extends Mailable
     public function build()
     {
         return $this->from('assignment05@gmail.com','assignment05')
-        ->subject('A new contact email')
-        ->view('student.student')->with('data',$this->data);
+        ->subject($this->data['subject'])
+        ->view('student.email')->with('data',$this->data);
     }
 }

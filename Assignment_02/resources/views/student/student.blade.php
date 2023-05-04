@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('content')
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container ">
         <div class="d-flex justify-content-between w-100">
@@ -15,19 +16,42 @@
 
 <div class=" w-75 mt-3 me-0 ms-auto me-auto">
     <div class="d-flex justify-content-between w-100">
-        <a href="{{route('student#create')}}" class="btn btn-primary">Create</a>
+        <a href="{{route('student#create')}}" class="btn btn-primary ">Create</a>
         <div class="d-flex">
         <a href="{{route('student#export')}}" class="btn btn-primary">Export</a>
-        <form action="{{route('student#import')}}" method="post" enctype="multipart/form-data" class="d-flex">
-            @csrf
-            <div class="form-group  border border-1 ms-2">
-                <input type="file" name="file" class="ms-2">
-                <button type="submit" class="btn btn-primary">Import</button>
-            </div>
-        </form>
+
+        <button type="button" class="btn btn-primary ms-3" data-toggle="modal" data-target="#importModal">Import</button>
+
         </div>
     </div>
 
+</div>
+<!-- Modal -->
+<div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">IMPORT</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" ></button>
+      </div>
+    <form action="{{route('student#import')}}" method="post" enctype="multipart/form-data" class="d-flex">
+            @csrf
+      <div class="modal-body">
+      <div class="form-group  border border-1 ms-2 p-2">
+            <input type="file" name="file" class="ms-2">
+        </div>
+        <div class="form-group text-end">
+         <button type="submit" class="btn btn-primary">Import</button>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Import</button>-->
+      </div>
+      </form>
+    </div>
+  </div>
 </div>
 <div class="panel-body border border-1 w-75 mt-3 me-0 ms-auto me-auto">
     <div class=" pt-2 pb-2 bg-light w-100 border border-1"><h4 class=" ms-4">Student Lists</h4></div>
@@ -78,4 +102,5 @@
     </tbody>
 </table>
 </div>
+
 @endsection

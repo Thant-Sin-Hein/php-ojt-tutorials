@@ -90,6 +90,6 @@ class StudentController extends Controller
     public function import(Request $request)
     {
         Excel::import(new StudentsImport,$request->file);
-        return redirect('/studentShow')->withStatus('Excel file imported successful');
+        return redirect('/')->withStatus('Excel file imported successful');
     }
 }

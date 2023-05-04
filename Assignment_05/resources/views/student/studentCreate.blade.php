@@ -93,20 +93,25 @@
                     address : studentAddress.value,
                 })
                 .then(response => {
-                    if (response.data.msg == 'success') {
-                        //window.location.assign('/');
-                        console.log(response);
-                    }
-                    else {
-                        var nameErr = document.getElementById('nameError');
-                        var phoneErr = document.getElementById('phoneError');
-                        var emailErr = document.getElementById('emailError');
-                        var addressErr = document.getElementById('addressError');
+                    if (response.data.mail == 'Your mail is found') {
+                        alert('your email is found');
+                        if (response.data.msg == 'success') {
+                            window.location.assign('/');
+                        }
+                        else {
+                            var nameErr = document.getElementById('nameError');
+                            var phoneErr = document.getElementById('phoneError');
+                            var emailErr = document.getElementById('emailError');
+                            var addressErr = document.getElementById('addressError');
 
-                        nameErr.innerHTML = studentName.value == '' ? '<i class="text-danger">'+response.data.msg.name+'</i>': '';
-                        phoneErr.innerHTML = studentPhone.value == '' ? '<i class="text-danger">'+response.data.msg.phone+'</i>': '';
-                        emailErr.innerHTML = studentEmail.value == '' ? '<i class="text-danger">'+response.data.msg.email+'</i>': '';
-                        addressErr.innerHTML = studentAddress.value == '' ? '<i class="text-danger">'+response.data.msg.address+'</i>': '';
+                            nameErr.innerHTML = studentName.value == '' ? '<i class="text-danger">'+response.data.msg.name+'</i>': '';
+                            phoneErr.innerHTML = studentPhone.value == '' ? '<i class="text-danger">'+response.data.msg.phone+'</i>': '';
+                            emailErr.innerHTML = studentEmail.value == '' ? '<i class="text-danger">'+response.data.msg.email+'</i>': '';
+                            addressErr.innerHTML = studentAddress.value == '' ? '<i class="text-danger">'+response.data.msg.address+'</i>': '';
+                        }
+
+                    }else {
+                        alert('your email is not found');
                     }
 
                 })
