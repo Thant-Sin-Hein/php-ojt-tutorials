@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\Validator;
 class StudentDao implements StudentDaoInterface
 {
 
-    public function validateStudent($request): object
+    public function createStudent(array $data): void
     {
-        return  Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            'major'=>'required',
-            'phone'=>'required|max:20',
-            'email' => 'required|email|max:255|unique:students,email',
-            'address'=>'required|max:255',
+        student::create([
+            'name' => $data['name'],
+            'phone'=>$data['phone'],
+            'major_id' =>$data['major'],
+            'email'=>$data['email'],
+            'address'=>$data['address'],
         ]);
     }
 
@@ -41,6 +41,7 @@ class StudentDao implements StudentDaoInterface
         $students->update([
             'name' => $data['name'],
             'phone'=>$data['phone'],
+            'major_id'=>$data['major'],
             'email'=>$data['email'],
             'address'=>$data['address'],
         ]);

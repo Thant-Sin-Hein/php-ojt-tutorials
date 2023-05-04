@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Contracts\Services\StudentServiceInterface;
 use App\Contracts\Services\MajorServiceInterface;
 use App\Http\Requests\StudentUpdateRequest;
+use App\Http\Requests\StudentCreateRequest;
 use App\Models\student;
 use App\Exports\studentsExport;
 use App\Imports\StudentsImport;
@@ -30,53 +31,46 @@ class StudentController extends Controller
         $this->studentService = $studentServiceInterface;
         $this->majorService = $majorServiceInterface;
     }
-    //student
+    // create
     public function studentCreate() {
         $major=$this->majorService->getName();
-        return view('student.studentCreate', [
+        return view('student.create', [
             'major' => $major
         ]);
     }
-    public function studentStore(Request $request) {
-        $validator= $this->studentService->validateStudent($request);
-        if ($validator->fails()) {
-            return redirect('/')
-                ->withInput()
-                ->withErrors($validator);
-        }
-        else {
-            $student = new student;
-            $student->name = $request->name;
-            $student->major_id=$request->major;
-            $student->phone=$request->phone;
-            $student->email=$request->email;
-            $student->address=$request->address;
-            $student->save();
 
-        return redirect('/');
-        }
+    //show
+    public function studentStore(StudentCreateRequest $request) {
+        $this->studentService->createStudent($request->only([
+            'name','major','phone','email','address',
+        ]));
+        return redirect()->route('student#show');
+
     }
     public function studentShow() {
         $student=$this->studentService->getStudent();
-        return view('student.student', [
+        return view('student.index', [
             'student' => $student
         ]);
     }
+
+    //update
     public function studentEdit($id) {
         $major=$this->majorService->getName();
-        $user = $this->studentService->getStudentById($id);
-        return view('student.studentEdit',compact('user'),[
+        $student = $this->studentService->getStudentById($id);
+        return view('student.edit',compact('student'),[
             'major' => $major
         ]);
     }
 
     public function studentUpdate(StudentUpdateRequest $request, $id) {
         $this->studentService->updateStudent($request->only([
-            'name','major_id','phone','email','address',
+            'name','major','phone','email','address',
         ]), $id);
         return redirect()->route('student#show');
     }
 
+    //delete
     public function studentRemove(student $students) {
         $this->studentService->deleteStudent($students);
         return redirect('/');

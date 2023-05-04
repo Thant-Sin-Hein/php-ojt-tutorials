@@ -7,14 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Student List</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 </head>
 
 <body>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container ">
+        <div class="d-flex justify-content-between w-100">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <p class="pt-2">
+                <a href="{{route('student#show')}}" class="text-dark" style="text-decoration:none;"> Students</a>
+                <a href="{{route('major#show')}}" class="text-secondary ms-2" style="text-decoration:none;"> Majors</a>
+            </p>
+        </div>
+    </div>
+</nav>
     @yield('content')
 
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>

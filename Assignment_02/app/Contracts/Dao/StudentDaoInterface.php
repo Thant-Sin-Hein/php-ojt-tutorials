@@ -4,8 +4,7 @@ namespace App\Contracts\Dao;
 
 interface StudentDaoInterface
 {
-
-    public function validateStudent($request): object;
+    public function createStudent(array $data): void;
     public function getStudent(): object;
     public function getStudentById(int $id): object;
     public function updateStudent(array $data, $id): void;

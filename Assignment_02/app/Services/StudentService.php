@@ -18,10 +18,6 @@ class StudentService implements StudentServiceInterface
         $this->studentDao = $studentDao;
     }
 
-    public function validateStudent($request): object
-    {
-       return $this->studentDao->validateStudent($request);
-    }
 
     public function getStudent(): object
     {
@@ -41,6 +37,11 @@ class StudentService implements StudentServiceInterface
     public function deleteStudent($students): void
     {
         $this->studentDao->deleteStudent($students);
+    }
+
+    public function createStudent(array $data): void
+    {
+        $this->studentDao->createStudent($data);
     }
 
 }
